@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Wonderkind Festival 2026</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+
+  <style>
+    body, h1 {
+      font-family: "Montserrat", sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #fff;
+    }
+
+    .loader {
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      background: white;
+      width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s;
+    }
+    .loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s;
+    }
+    .load-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .loaded-text {
+      width: 20vw;
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 1em;
+      animation: logoLoad 0.8s cubic-bezier(0.38, 0.89, 0.45, 1.15);
+    }
+    @keyframes logoLoad {
+      from { opacity: 0; transform: scale(0.7) rotate(-10deg);}
+      to { opacity: 1; transform: scale(1) rotate(0deg);}
+    }
+    .loading-text {
+      font-size: 6vmax;
+      color: #ff9900;
+      font-family: "Raleway", sans-serif;
+      font-weight: bold;
+      text-shadow: 0 0 15px #ffe5b6, 0 2px 5px #c7822f55;
+      letter-spacing: 0.08em;
+      animation: expand 1.8s cubic-bezier(.6,.07,.51,1.4);
+      white-space: nowrap;
+    }
+    @keyframes expand {
+      from { letter-spacing: -0.2em; opacity: 0.3;}
+      to   { letter-spacing: 0.08em; opacity: 1;}
+    }
+    .content-hidden {
+      display: none !important;
+    }
+
+    /* Page improvements */
+    .bgimg {
+      background-image: url("asset/wokebg.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: repeat;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    #mainLogo {
+      width: 150px;
+      height: auto;
+      margin-top: 10px;
+      margin-bottom: 0;
+      box-shadow: 0 6px 24px #ffab2318;
+      border-radius: 18px;
+    }
+    .angka {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ff9900;
+      margin: 6px 0 8px 0;
+      letter-spacing: 0.2em;
+      text-shadow: 0 2px 8px #fa0b1c10;
+    }
+    .subtitle-image {
+      margin: 8px 0 9px 0;
+      width: 225px;
+      max-width: 60vw;
+      display: block;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ff5500;
+      background: #fff5caad;
+      padding: 6px 25px;
+      border-radius: 19px;
+      margin-bottom: 12px;
+      margin-top: 2px;
+      display: inline-block;
+      box-shadow: 0 2px 10px #fbe4b111;
+      font-family: inherit;
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ff6600;
+      margin: 8px 0 22px 0;
+      letter-spacing: 3px;
+      text-shadow: 0px 3px 16px #f7cf009a;
+      text-align: center;
+    }
+    .countdown {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #cd6518;
+      margin-top: 6px;
+      text-shadow: 0px 2px 14px #fff3d8d5;
+      letter-spacing: .1em;
+      background: #fde0ac83;
+      display: inline-block;
+      padding: 6px 21px;
+      border-radius: 1em;
+      box-shadow: 0 2px 8px #f0940a24;
+      margin-bottom: 20px;
+    }
+    /* About Section */
+    .aboutme-section {
+      width: 100vw;
+      min-height: auto;
+      background-image: url(https://i.pinimg.com/1200x/91/11/cb/9111cb43a5ebe0b74522a30094a043ef.jpg) ;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      box-sizing: border-box;
+      padding: 24px 8px 15px 8px;
+      position: relative;
+      z-index: 2;
+    }
+    .aboutme-photo {
+      width: 95px;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 13px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.13);
+      margin-bottom: 11px;
+      border: 4px solid #fff3df;
+      background: #fff;
+      display: block;
+    }
+    .aboutme-header {
+      font-size: 22px;
+      color: #ff8d08;
+      font-weight: bold;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      margin-bottom: 12px;
+      letter-spacing: 0.025em;
+      text-shadow: 0 3px 10px rgba(255,153,0,0.11);
+      text-align: center;
+      line-height: 1.1;
+    }
+    .aboutme-desc {
+      font-size: 12px;
+      color: #40290f;
+      font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto 12px auto;
+      line-height: 1.48;
+      background: rgba(255,255,240,0.98);
+      border-radius: 11px;
+      padding: 16px 10px;
+      box-shadow: 0 2px 15px rgba(255,146,5,0.09);
+      box-sizing: border-box;
+      display: block;
+      white-space: normal;
+      overflow-wrap: break-word;
+      letter-spacing: 0.01em;
+      font-weight: bold;
+      text-align: center;
+      border: 2px solid #ffb86b;
+    }
+    .aboutme-section {
+      align-items: stretch;
+    }
+    .aboutme-inner-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 18px;
+      max-width: 920px;
+      width: 100%;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1400px) {
+      .aboutme-inner-container { gap: 14px; max-width: 700px;}
+      .aboutme-desc { padding: 11px 7px; font-size: 11.6px;}
+      .aboutme-header { font-size: 20px; }
+    }
+    @media (max-width: 1100px) {
+      .aboutme-photo { width: 75px; height: 75px;}
+      .aboutme-header { font-size: 18px; }
+      .aboutme-desc { font-size: 10.5px; padding: 7px 4px; }
+      .aboutme-inner-container { flex-direction: column; align-items: center; gap: 9px; }
+    }
+    @media (max-width: 950px) {
+      .aboutme-header { font-size: 14px;}
+      .aboutme-desc { font-size: 9px; padding: 4px 2px;}
+    }
+    @media (max-width: 800px) {
+      .aboutme-desc, .about-section p {
+        font-size: 8.5px;
+        padding: 3px 1.5px;
+      }
+      .aboutme-header, .about-section h2 {
+        font-size: 11px;
+      }
+      .aboutme-section, .about-section {
+        padding: 7px 5px 7px 5px;
+      }
+      .aboutme-photo { width: 46px; height: 46px; border-radius: 3px; }
+      .aboutme-inner-container { gap: 5px; }
+    }
+    @media (max-width: 700px) {
+      .aboutme-inner-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .aboutme-desc {
+        padding: 2px 2px;
+      }
+    }
+    .aboutme-section, .aboutme-desc {
+      text-shadow: 0 2px 8px #ffe4ba1c;
+    }
+/* Timelite style*/
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap');
+ 
+.timeline-content h3 {
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+}
+
+.timeline-content p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 80px 0;
+  background-image: url(asset/nyambung2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 0;
+}
+  .timeline {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #F27121, #E94057, #8A2387);
+    z-index: 1;
+  }
+  .timeline-event {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .timeline-event:nth-child(odd):not(.timeline-line) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  
+  .timeline-event:nth-child(even):not(.timeline-line) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  
+  .timeline-dot {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #F27121, #E94057, #8A2387);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #f5efd6;
+    z-index: 3;
+  }
+  
+.timeline-content {
+  background-color: #f7f5eb;
+  color: #191919;
+  padding: 1.2rem 2.7rem;
+  border-radius: 10px;
+  box-shadow: 2px 5px 18px 0px rgba(238, 255, 0, 0.1);
+  width: 400px;
+  height: 120px;
+  position: relative;
+  z-index: 2;
+  margin: 8px 15px;
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timeline-event:nth-child(odd) .timeline-content {
+  margin-right: 15px;
+  margin-left: auto;
+}
+
+.timeline-event:nth-child(even) .timeline-content {
+  margin-left: 15px;
+  margin-right: auto;
+}
+
+  @media (max-width: 700px) {
+    .timeline {
+      width: 100%;
+    }
+    .timeline-line {
+      left: 13px;
+      transform: none;
+      width: 2px;
+    }
+    .timeline-dot {
+      left: 13px;
+      transform: none;
+      width: 11px;
+      height: 11px;
+      top: 17px;
+    }
+    .timeline-event,
+    .timeline-event:nth-child(odd):not(.timeline-line),
+    .timeline-event:nth-child(even):not(.timeline-line) {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .timeline-content {
+      margin-left: 28px;
+      margin-right: 0;
+      margin-top: 0;
+      min-width: 120px;
+      max-width: 99vw;
+      padding: 1rem 1.8rem;
+      font-size: 15.5px;
+    }
+  }
+
+    /* Competition Card Section Styling */
+    .bg-card {
+  background-image: url(asset/nyambung1.png);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 0 53px 0;
+  min-height: 280px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+}
+
+    .competition-title {
+      color: #fff;
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 44px;
+      letter-spacing: 1.5px;
+      text-shadow: 0px 5px 12px #5a26082e, 0 1px 0 #542246;
+      text-align: center;
+    }
+    .cards-container {
+      display: flex;
+      justify-content: center;
+      gap: 38px;
+      flex-wrap: wrap;
+    }
+    .card-wrapper {
+      background: white;
+      width: 330px;
+      padding: 16px 18px 18px 18px;
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.11);
+      text-align: center;
+      margin: 0 8px 18px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.17s;
+    }
+    .card-wrapper:hover {
+      transform: scale(1.03) translateY(-7px);
+      box-shadow: 0 20px 38px rgba(255,162,5,0.09);
+    }
+    .poster {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px #f7e9a021;
+      background: #fff4ec;
+    }
+    .btn-group {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+    }
+    .btn {
+      background: #ff9900;
+      color: white;
+      padding: 10px 10px;
+      width: 48%;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.16s, color 0.18s;
+      box-shadow: 0 2px 8px #f4d07b88;
+      font-family: inherit;
+    }
+    .btn:hover {
+      background: #bd7202;
+      color: #fff8dc;
+    }
+
+    /* Mobile responsiveness for cards */
+    @media(max-width: 740px) {
+      .cards-container { flex-direction: column; align-items: center; gap: 20px;}
+      .card-wrapper { width: 98vw; max-width: 340px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="load-text">
+      <img class="loaded-text" src="asset/wokelogo.png" alt="Logo">
+      <div class="loading-text">WONDERKIND FEST 26</div>
+    </div>
+  </div>
+
+  <!-- Main Website Content (hidden while loading) -->
+  <div id="mainContent" class="content-hidden">
+    <div class="bgimg">
+      <img id="mainLogo" src="asset/wokelogo.png" alt="Wonderkind Festival Logo" />
+      <p class="angka">2026</p>
+      <img src="asset/wokteks.png" alt="Subtitle Image" class="subtitle-image">
+      <p class="subtitle">"Karsa Cendekia, Wujudkan Lokasamgraha!"</p>
+      <p class="title">GET READY!</p>
+      <div class="countdown" id="countdown">
+        Loading countdown...
+      </div>
+    </div>
+    <!-- Full width About Section -->
+    <section id="aboutme" class="aboutme-section">
+      <div class="aboutme-inner-container">
+        <img src="asset/3D.gif" alt="Profile" class="aboutme-photo" />
+        <div style="flex:1; min-width:180px; display:flex; flex-direction:column;">
+          <h2 class="aboutme-header">About Us</h2>
+          <p class="aboutme-desc">
+            Wonderkind Festival adalah <b>perayaan tahunan yang penuh warna, energi, dan inspirasi</b>, dirancang khusus untuk merayakan keajaiban, semangat, dan potensi luar biasa dari generasi muda sejak tahun 2014.<br><br>
+            <span style="font-size:1em;">Wonderkind Festival 2026 hadir dengan tema <strong style="color: #ffc908;">"Empowering Youth Education For Socio-Economic Transformation"</strong> yang berfokus pada pentingnya pendidikan sebagai alat pemberdayaan, bukan sekadar transfer pengetahuan.</span><br><br>
+            Dengan mengusung tagline <strong style="color: #ffc908;">"Karsa Cendekia, Wujudkan Lokasamgraha"</strong>, Wonderkind Festival mengajak kita semua untuk menciptakan kecerdasan yang tidak hanya berbasis pengetahuan, tetapi juga mengedepankan kebaikan dan keberlanjutan bagi seluruh masyarakat.<br><br>
+            Wonderkind menghadirkan berbagai rangkaian acara seru dan beragam seperti <b>Wonderkindness, Wonder Competition, Wonder Talk, Wonder Qur'an</b> hingga <b>Wonder Concert</b>. Semuanya menjadi panggung bebas berekspresi, berbagi inspirasi, menampilkan bakat dan kreativitas generasi muda.<br><br>
+            Jangan lewatkan kesempatan menjadi bagian dari <b>perubahan positif yang menginspirasi!</b>
+          </p>
+        </div>
+      </div>
+      <!--Bagian Timeline-->
+    </section>
+    <div class="timeline-container">
+    <div class="timeline">
+      <div class="timeline-line"></div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0">30 November 2025</h3>
+          <p style="margin:0.2em 0 0 0;">OPEN REGISTRATION BATCH 1</p>
+        </div>
+      </div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0">25 Desember 2025</h3>
+          <p style="margin:0.2em 0 0 0;">CLOSE REGISTRATION BATCH 1</p>
+        </div>
+      </div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0;">8 Januari 2026</h3>
+          <p style="margin:0.2em 0 0 0;">OPEN REGISTRATION BATCH 2</p>
+        </div>
+      </div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0;">29 Januari 2026</h3>
+          <p style="margin:0.2em 0 0 0;">CLOSE REGISTRATION BATCH 2</p>
+        </div>
+      </div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0;">1 Februari 2026</h3>
+          <p style="margin:0.2em 0 0 0;">TECHNICAL MEETING</p>
+        </div>
+      </div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0;">11 Februari 2026</h3>
+          <p style="margin:0.2em 0 0 0;">GRAND OPENING</p>
+        </div>
+      </div>
+  
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 style="font-size:1.14em;margin:0;">11 Februari 2026</h3>
+          <p style="margin:0.2em 0 0 0;">WONDER COMPETITION</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Bagian Poster-->
+    <section class="bg-card">
+      <div>
+        <div class="competition-title">OUR COMPETITION</div>
+        <div class="cards-container">
+          <div class="card-wrapper">
+            <img src="asset/angklung.jpeg" class="poster" alt="Angklung Competition Poster">
+            <div class="btn-group">
+              <a href="https://drive.google.com/..." class="btn" target="_blank">RULEBOOK</a>
+              <a href="https://linktr.ee/Wonderkindfest" class="btn" target="_blank">REGISTRATION</a>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <img src="asset/minsoc.jpeg" class="poster" alt="MINSOC Competition Poster">
+            <div class="btn-group">
+              <a href="https://drive.google.com/..." class="btn" target="_blank">RULEBOOK</a>
+              <a href="https://linktr.ee/...registration-minsoc" class="btn" target="_blank">REGISTRATION</a>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <img src="asset/paintrumble.jpeg" class="poster" alt="MINSOC Competition Poster">
+            <div class="btn-group">
+              <a href="https://drive.google.com/..." class="btn" target="_blank">RULEBOOK</a>
+              <a href="https://linktr.ee/...registration-minsoc" class="btn" target="_blank">REGISTRATION</a>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <img src="asset/culturalflow.jpeg" class="poster" alt="MINSOC Competition Poster">
+            <div class="btn-group">
+              <a href="https://drive.google.com/..." class="btn" target="_blank">RULEBOOK</a>
+              <a href="https://linktr.ee/...registration-minsoc" class="btn" target="_blank">REGISTRATION</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Loading Screen Logic
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader');
+      const mainContent = document.getElementById('mainContent');
+      setTimeout(function() {
+        loader.classList.add('fade-out');
+        setTimeout(function() {
+          loader.style.display = 'none';
+          mainContent.classList.remove('content-hidden');
+        }, 650);
+      }, 1600);
+    });
+
+    // Set the countdown target date/time
+    const countdownDate = new Date("February 11, 2026 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        const c = document.getElementById("countdown");
+        if (c) c.innerHTML = "The event has started!";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const c = document.getElementById("countdown");
+      if (c)
+        c.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Wait for loaded mainContent before starting countdown
+    let timer;
+    document.addEventListener("DOMContentLoaded", function() {
+      timer = setInterval(updateCountdown, 1000);
+      updateCountdown();
+    });
+  </script>
+</body>
+</html>
